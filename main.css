@@ -1,0 +1,66 @@
+
+body {
+    background-color: sandybrown;
+}
+
+h1 {
+    text-align: center;
+}
+
+.checker-board {
+    border-radius: 0px;
+    border: 25px solid #1a0900;
+    /* Added width and height as multiples of 8 for the 8 squares */
+    width: 560px;
+    height: 560px;
+    margin: 0 auto;
+}
+
+.checker-board .square {
+    /* Division of 560px by 8 to get correct square height */
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-odd {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-even {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-odd > .square:nth-child(odd) {
+    background-color: #ffff99;
+}
+
+.row-odd > .square:nth-child(even) {
+    background-color: #1a0900;
+}
+
+.row-even > .square:nth-child(odd) {
+    background-color: #1a0900;
+}
+
+.row-even > .square:nth-child(even) {
+    background-color: #ffff99;
+}
+
+.black-checker {
+    border-radius: 50%;
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+}
+
+.white-checker {
+    border-radius: 50%;
+    background-color: red;
+    height: 50px;
+    width: 50px;
+}
