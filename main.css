@@ -67,7 +67,11 @@ h1 {
 
 .black-checker:hover, .white-checker:hover {
     background-color: yellow;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
     transition: background-color 0.1s;
     cursor: pointer;
+}
+
+.is-selected {
+    background-color: yellow;
 }
