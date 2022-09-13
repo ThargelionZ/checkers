@@ -29,6 +29,8 @@ let gameboard = [
 let isBlackTurn = false;
 let pieceSelected = false;
 let checkerSelectedLocation = "";
+let checkerSelectedColor = "";
+let checkerSelectedIsKing = false;
 
 /*
     Switching selected checkers
@@ -43,6 +45,7 @@ $(".black-checker").click(function() {
             $(checkerElement).removeClass("is-selected");
             pieceSelected = false;
             checkerSelectedLocation = "";
+            checkerSelectedColor = "";
             console.log(checkerSelectedLocation);
         }
         // If it's not already selected, add the is-selected class
@@ -51,6 +54,7 @@ $(".black-checker").click(function() {
             $(checkerElement).addClass("is-selected");
             pieceSelected = true;
             checkerSelectedLocation = checkerElement.parent().attr("id");
+            checkerSelectedColor = "black";
             console.log(checkerSelectedLocation);
         }
     }
@@ -66,6 +70,7 @@ $(".white-checker").click(function() {
             $(checkerElement).removeClass("is-selected");
             pieceSelected = false;
             checkerSelectedLocation = "";
+            checkerSelectedColor = "";
             console.log(checkerSelectedLocation);
         }
         // If it's not already selected, add the is-selected class
@@ -74,6 +79,7 @@ $(".white-checker").click(function() {
             $(checkerElement).addClass("is-selected");
             pieceSelected = true;
             checkerSelectedLocation = checkerElement.parent().attr("id");
+            checkerSelectedColor = "white";
             console.log(checkerSelectedLocation);
         }
     }
@@ -85,6 +91,14 @@ $(".white-checker").click(function() {
 $(".square").click(function() {
     let squareElement = $(this);
 
+    let moveAvailable = checkMoveAvailability(squareElement.attr("id"));
+    if(moveAvailable) {
+        // Remove selected checker from its location
+        let removedChecker = $("#" + checkerSelectedLocation).children()[0];
+
+        // Add checker to new location
+        $("#" + squareElement.attr("id")).append(removedChecker);
+    }
     // Only do something if the square is empty
 });
 
@@ -337,9 +351,22 @@ function getMovesList(checkerLocation, checkerColor, isKing, movesList) {
 }
 
 /*
+    checkMoveAvailability - Checks the available moves for selected checker
+ */
+function checkMoveAvailability(squareId) {
+    let movesList = getMovesListDriver(checkerSelectedLocation, checkerSelectedColor, checkerSelectedIsKing);
+
+    for(let i = 0; i < movesList.length; i++) {
+        if(squareId === movesList[i]) {
+            return true;
+        }
+    }
+}
+
+/*
     addMoves - Helper method for getMovesList to condense adding moves
  */
-function addMoves() {
+function addMoves(isKing, checkerColor, checkerRow, checkerCol, movesList) {
 
 }
 
