@@ -105,8 +105,6 @@ function getMovesListDriver(checkerLocation, checkerColor, isKing) {
 function getMovesList(checkerLocation, checkerColor, isKing, movesList) {
     let checkerRow = parseInt(checkerLocation.substring(1, 2));
     let checkerCol = parseInt(checkerLocation.substring(3));
-    let diagLeftSquareId = '';
-    let diagRightSquareId = '';
 
     let upDiagLeftSquareId = '';
     let upDiagRightSquareId = '';
@@ -260,38 +258,38 @@ function getMovesList(checkerLocation, checkerColor, isKing, movesList) {
     } else if(!isKing && checkerColor === 'white') {
         // Set move locations if they exist (up-diag-left, up-diag-right)
         if((checkerRow - 1) > 0 && (checkerCol - 1) > 0) {
-            diagLeftSquareId = 'r' + (checkerRow - 1) + 'c' + (checkerCol - 1);
+            upDiagLeftSquareId = 'r' + (checkerRow - 1) + 'c' + (checkerCol - 1);
         }
         if((checkerRow - 1) > 0 && (checkerCol + 1) < 9) {
-            diagRightSquareId = 'r' + (checkerRow - 1) + 'c' + (checkerCol + 1);
+            upDiagRightSquareId = 'r' + (checkerRow - 1) + 'c' + (checkerCol + 1);
         }
 
         // If move location exists, check to see if a checker is present
-        if(diagLeftSquareId !== '') {
+        if(upDiagLeftSquareId !== '') {
             // Check to see if checker is located inside square
-            if($("#" + diagLeftSquareId).find("div").length === 0) {
-                movesList.push(diagLeftSquareId);
+            if($("#" + upDiagLeftSquareId).find("div").length === 0) {
+                movesList.push(upDiagLeftSquareId);
             } else {
-                let squareChildren = $("#" + diagLeftSquareId).children();
+                let squareChildren = $("#" + upDiagLeftSquareId).children();
                 let checkerClass = squareChildren[0].className;
 
                 // If the checker is black, check surrounding locations to see if jump is possible
                 if(checkerClass !== 'white-checker') {
-                    return getMovesList(diagLeftSquareId, "white", false, movesList);
+                    return getMovesList(upDiagLeftSquareId, "white", false, movesList);
                 }
             }
         }
-        if(diagRightSquareId !== '') {
+        if(upDiagRightSquareId !== '') {
             // Check to see if checker is located inside square
-            if($("#" + diagRightSquareId).find("div").length === 0) {
-                movesList.push(diagRightSquareId);
+            if($("#" + upDiagRightSquareId).find("div").length === 0) {
+                movesList.push(upDiagRightSquareId);
             } else {
-                let squareChildren = $("#" + diagRightSquareId).children();
+                let squareChildren = $("#" + upDiagRightSquareId).children();
                 let checkerClass = squareChildren[0].className;
 
                 // If the checker is black, check surrounding locations to see if jump is possible
                 if(checkerClass !== 'white-checker') {
-                    return getMovesList(diagRightSquareId, "white", false, movesList);
+                    return getMovesList(upDiagRightSquareId, "white", false, movesList);
                 }
             }
         }
@@ -300,38 +298,38 @@ function getMovesList(checkerLocation, checkerColor, isKing, movesList) {
 
         // Set move locations if they exist (down-diag-left, down-diag-right)
         if((checkerRow + 1) < 9 && (checkerCol - 1) > 0) {
-            diagLeftSquareId = 'r' + (checkerRow + 1) + 'c' + (checkerCol - 1);
+            downDiagLeftSquareId = 'r' + (checkerRow + 1) + 'c' + (checkerCol - 1);
         }
         if((checkerRow + 1) < 9 && (checkerCol + 1) < 9) {
-            diagRightSquareId = 'r' + (checkerRow + 1) + 'c' + (checkerCol + 1);
+            downDiagRightSquareId = 'r' + (checkerRow + 1) + 'c' + (checkerCol + 1);
         }
 
         // If move location exists, check to see if a checker is present
-        if(diagLeftSquareId !== '') {
+        if(downDiagLeftSquareId !== '') {
             // Check to see if checker is located inside square
-            if($("#" + diagLeftSquareId).find("div").length === 0) {
-                movesList.push(diagLeftSquareId);
+            if($("#" + downDiagLeftSquareId).find("div").length === 0) {
+                movesList.push(downDiagLeftSquareId);
             } else {
-                let squareChildren = $("#" + diagLeftSquareId).children();
+                let squareChildren = $("#" + downDiagLeftSquareId).children();
                 let checkerClass = squareChildren[0].className;
 
                 // If the checker is white, check surrounding locations to see if jump is possible
                 if(checkerClass !== 'black-checker') {
-                    return getMovesList(diagLeftSquareId, "black", false, movesList);
+                    return getMovesList(downDiagLeftSquareId, "black", false, movesList);
                 }
             }
         }
-        if(diagRightSquareId !== '') {
+        if(downDiagRightSquareId !== '') {
             // Check to see if checker is located inside square
-            if($("#" + diagRightSquareId).find("div").length === 0) {
-                movesList.push(diagRightSquareId);
+            if($("#" + downDiagRightSquareId).find("div").length === 0) {
+                movesList.push(downDiagRightSquareId);
             } else {
-                let squareChildren = $("#" + diagRightSquareId).children();
+                let squareChildren = $("#" + downDiagRightSquareId).children();
                 let checkerClass = squareChildren[0].className;
 
                 // If the checker is white, check surrounding locations to see if jump is possible
                 if(checkerClass !== 'black-checker') {
-                    return getMovesList(diagRightSquareId, "black", false, movesList);
+                    return getMovesList(downDiagRightSquareId, "black", false, movesList);
                 }
             }
         }
